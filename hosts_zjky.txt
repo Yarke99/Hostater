@@ -1,0 +1,33 @@
+
+# Zijin Mining Start
+# OA
+172.22.22.5	oa-old.zjky.cn
+172.22.22.50	da.zjky.cn
+172.22.22.62	oa-ftp.zjky.cn
+172.22.22.63	oa.zjky.cn
+172.22.22.64	oa2.zjky.cn
+172.22.22.65	oa3.zjky.cn
+172.22.22.74	hr.zjky.cn
+
+# ECC
+172.22.23.113	ERPES01		erpes01.zjky.cn
+172.22.23.114	ERPEP01		erpep01.zjky.cn
+172.22.23.115	VDBERPEP01	vdberpep01.zjky.cn
+172.22.23.116	ERP01		erp01.zjky.cn
+172.22.23.117	ERPEP11		erpep11.zjky.cn
+172.22.23.118	ERPEP21		erpep21.zjky.cn
+
+# SRM
+172.22.23.123	ERPRS01		erprs01.zjky.cn
+172.22.23.124	ERPRP01		erprp01.zjky.cn
+172.22.23.125	VDBERPRP01	vdberprp01.zjky.cn
+172.22.23.126	SRM01		srm01.zjky.cn
+
+# PORTAL
+172.22.23.153	ERPPS01		erpps01.zjky.cn	
+172.22.23.154	ERPPP01		erppp01.zjky.cn	
+172.22.23.155	VDBERPHP01vdb	erphp01.zjky.cn	
+172.22.23.156	PORTAL01	portal01.zjky.cn
+
+# Zijin Mining End
+
