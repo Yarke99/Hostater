@@ -1,2 +1,1 @@
-# Hosts
-Update windows hosts file.
+Update windows hosts file from custom profile and website.
