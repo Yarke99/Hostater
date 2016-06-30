@@ -3,7 +3,7 @@
     Author: Yarke
     QQCode: 649306855
     Create: 2016.06.03
-    Update: 2016.06.14
+    Update: 2016.07.01
 #>
 If (([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)){ 
     [console]::BackgroundColor = "DarkGreen"
@@ -34,7 +34,7 @@ Function Reset(){
 }
 Function AppendZijin(){
     If (Test-Path "hosts_zjky.txt"){
-        Get-Content hosts_zjky.txt | Set-Content $HostsFile
+        Get-Content hosts_zjky.txt | Add-Content $HostsFile
         ipconfig /flushdns | Out-Null
     } Else {
         Write-Host "hosts_zjky.txt文件未找到。"
@@ -42,7 +42,7 @@ Function AppendZijin(){
 }
 Function AppendUser(){
     If (Test-Path "hosts_user.txt"){
-        Get-Content hosts_user.txt | Set-Content $HostsFile
+        Get-Content hosts_user.txt | Add-Content $HostsFile
         ipconfig /flushdns | Out-Null
     } Else {
         Write-Host "hosts_user.txt文件未找到。"
