@@ -9,7 +9,7 @@ If (([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]:
     [console]::BackgroundColor = "DarkGreen"
     [console]::WindowHeight = 15
     [console]::WindowWidth = 56
-    $Host.UI.RawUI.WindowTitle = "ç®¡ç†å‘˜: Windows Hosts File Editor" # $myInvocation.MyCommand.Name
+    $Host.UI.RawUI.WindowTitle = "¹ÜÀíÔ±: Windows Hosts File Editor" # $myInvocation.MyCommand.Name
 } Else { 
     $newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell"
     $newProcess.Arguments = $myInvocation.MyCommand.Definition
@@ -29,7 +29,7 @@ Function Reset(){
         Get-Content hosts_windows.txt | Set-Content $HostsFile
         ipconfig /flushdns | Out-Null
     } Else {
-        Write-Host "hosts_windows.txtæ–‡ä»¶æœªæ‰¾åˆ°ã€‚"
+        Write-Host "hosts_windows.txtÎÄ¼şÎ´ÕÒµ½¡£"
     }
 }
 Function AppendZijin(){
@@ -37,7 +37,7 @@ Function AppendZijin(){
         Get-Content hosts_zjky.txt | Add-Content $HostsFile
         ipconfig /flushdns | Out-Null
     } Else {
-        Write-Host "hosts_zjky.txtæ–‡ä»¶æœªæ‰¾åˆ°ã€‚"
+        Write-Host "hosts_zjky.txtÎÄ¼şÎ´ÕÒµ½¡£"
     }
 }
 Function AppendUser(){
@@ -45,15 +45,15 @@ Function AppendUser(){
         Get-Content hosts_user.txt | Add-Content $HostsFile
         ipconfig /flushdns | Out-Null
     } Else {
-        Write-Host "hosts_user.txtæ–‡ä»¶æœªæ‰¾åˆ°ã€‚"
+        Write-Host "hosts_user.txtÎÄ¼şÎ´ÕÒµ½¡£"
     }
 }
 Function AppendWebsite(){
-    # å±è”½å¹¿å‘Š
+    # ÆÁ±Î¹ã¸æ
     Invoke-WebRequest "https://raw.githubusercontent.com/racaljk/hosts/master/hosts" | ForEach-Object{ $_ -replace "`n","`r`n"} | Add-Content $HostsFile 
     Invoke-WebRequest "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" | ForEach-Object{ $_ -replace "`n","`r`n"} | Add-Content $HostsFile
 
-    # ç¿»å¢™
+    # ·­Ç½
     Invoke-WebRequest "https://raw.githubusercontent.com/vokins/yhosts/master/hosts" | ForEach-Object{ $_ -replace "`n","`r`n"} | Add-Content $HostsFile
     Invoke-WebRequest "https://raw.githubusercontent.com/cnAnonymous/hosts/master/hosts" | ForEach-Object{ $_ -replace "`n","`r`n"} | Add-Content $HostsFile
     ipconfig /flushdns | Out-Null
@@ -71,7 +71,7 @@ Function Edit(){
 Do{
     Clear-Host
     Get-Content Menu.txt | Write-Host
-    $selection = Read-Host "è¯·è¾“å…¥èœå•ç¼–å·"
+    $selection = Read-Host "ÇëÊäÈë²Ëµ¥±àºÅ"
     Clear-Host
     switch ($selection)
     {
@@ -84,6 +84,6 @@ Do{
         {$_ -eq 6} {Edit; Break}
         Default    {About}
     }
-    Write-Host æŒ‰ä»»æ„é”®è¿”å›èœå•...
+    Write-Host °´ÈÎÒâ¼ü·µ»Ø²Ëµ¥...
     $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 }Until ($input -eq '0')
