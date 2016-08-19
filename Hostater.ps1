@@ -1,15 +1,15 @@
-<#
+ï»¿<#
     FileName: Update-Hosts
     Author: Yarke
     QQCode: 649306855
     Create: 2016.06.03
-    Update: 2016.07.01
+    Update: 2016.08.20
 #>
 If (([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)){ 
     [console]::BackgroundColor = "DarkGreen"
     [console]::WindowHeight = 15
     [console]::WindowWidth = 56
-    $Host.UI.RawUI.WindowTitle = "¹ÜÀíÔ±: Windows Hosts File Editor" # $myInvocation.MyCommand.Name
+    $Host.UI.RawUI.WindowTitle = "ç®¡ç†å‘˜: Windows Hosts File Editor" # $myInvocation.MyCommand.Name
 } Else { 
     $newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell"
     $newProcess.Arguments = $myInvocation.MyCommand.Definition
@@ -25,42 +25,43 @@ Function About(){
     Get-Content About.txt | Write-Host
 }
 Function Reset(){
+    Write-Host é‡ç½®Hosts
     If (Test-Path "hosts_windows.txt"){
         Get-Content hosts_windows.txt | Set-Content $HostsFile
         ipconfig /flushdns | Out-Null
     } Else {
-        Write-Host "hosts_windows.txtÎÄ¼şÎ´ÕÒµ½¡£"
+        Write-Host "hosts_windows.txtæ–‡ä»¶æœªæ‰¾åˆ°ã€‚"
     }
-}
-Function AppendZijin(){
-    If (Test-Path "hosts_zjky.txt"){
-        Get-Content hosts_zjky.txt | Add-Content $HostsFile
-        ipconfig /flushdns | Out-Null
-    } Else {
-        Write-Host "hosts_zjky.txtÎÄ¼şÎ´ÕÒµ½¡£"
-    }
+    Write-Host æ“ä½œå®Œæˆ
 }
 Function AppendUser(){
+    Write-Host æ·»åŠ ä¸ªäººHosts
     If (Test-Path "hosts_user.txt"){
         Get-Content hosts_user.txt | Add-Content $HostsFile
         ipconfig /flushdns | Out-Null
     } Else {
-        Write-Host "hosts_user.txtÎÄ¼şÎ´ÕÒµ½¡£"
+        Write-Host "hosts_user.txtæ–‡ä»¶æœªæ‰¾åˆ°ã€‚"
     }
+    Write-Host æ“ä½œå®Œæˆ
 }
 Function AppendWebsite(){
-    # ÆÁ±Î¹ã¸æ
-    Invoke-WebRequest "https://raw.githubusercontent.com/racaljk/hosts/master/hosts" | ForEach-Object{ $_ -replace "`n","`r`n"} | Add-Content $HostsFile 
-    Invoke-WebRequest "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" | ForEach-Object{ $_ -replace "`n","`r`n"} | Add-Content $HostsFile
-
-    # ·­Ç½
-    Invoke-WebRequest "https://raw.githubusercontent.com/vokins/yhosts/master/hosts" | ForEach-Object{ $_ -replace "`n","`r`n"} | Add-Content $HostsFile
-    Invoke-WebRequest "https://raw.githubusercontent.com/cnAnonymous/hosts/master/hosts" | ForEach-Object{ $_ -replace "`n","`r`n"} | Add-Content $HostsFile
+    Write-Host æ·»åŠ ç¿»å¢™
+    Invoke-WebRequest "https://raw.githubusercontent.com/fengixng/google-hosts/master/dnsmasq.hosts" | ForEach-Object{ $_ -replace "`r`n|`r|`n","`r`n"} | Add-Content $HostsFile # Youtubeå®Œç¾è§‚çœ‹
+    Invoke-WebRequest "https://raw.githubusercontent.com/racaljk/hosts/master/hosts" | ForEach-Object{ $_ -replace "`r`n|`r|`n","`r`n"} | Add-Content $HostsFile
+    Invoke-WebRequest "https://raw.githubusercontent.com/fengixng/google-hosts/master/hosts" | ForEach-Object{ $_ -replace "`r`n|`r|`n","`r`n"} | Add-Content $HostsFile # é£è¡Œä¸ªäºº 
+    Invoke-WebRequest "https://raw.githubusercontent.com/linuxcer/hosts/master/hosts" | ForEach-Object{ $_ -replace "`r`n|`r|`n","`r`n"} | Add-Content $HostsFile
+    #Invoke-WebRequest "https://raw.githubusercontent.com/linuxcer/hosts/master/hosts-a" | ForEach-Object{ $_ -replace "`r`n|`r|`n","`r`n"} | Add-Content HostsFile.txt # å¤‡ç”¨
+    #Invoke-WebRequest "https://raw.githubusercontent.com/linuxcer/hosts/master/hosts-b" | ForEach-Object{ $_ -replace "`r`n|`r|`n","`r`n"} | Add-Content HostsFile.txt # å¤‡ç”¨
+    #https://raw.githubusercontent.com/linuxcer/hosts/master/hosts-a
+    
+    Write-Host  æ·»åŠ å¹¿å‘Šå±è”½
+    Invoke-WebRequest "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" | ForEach-Object{ $_ -replace "`r`n|`r|`n","`r`n"} | Add-Content $HostsFile
+    Invoke-WebRequest "https://raw.githubusercontent.com/vokins/yhosts/master/hosts" | ForEach-Object{ $_ -replace "`r`n|`r|`n","`r`n"} | Add-Content $HostsFile
     ipconfig /flushdns | Out-Null
+    Write-Host æ“ä½œå®Œæˆ
 }
 Function Update(){
     Reset
-    AppendZijin
     AppendUser
     AppendWebsite
 }
@@ -71,19 +72,18 @@ Function Edit(){
 Do{
     Clear-Host
     Get-Content Menu.txt | Write-Host
-    $selection = Read-Host "ÇëÊäÈë²Ëµ¥±àºÅ"
+    $selection = Read-Host "è¯·è¾“å…¥èœå•ç¼–å·"
     Clear-Host
     switch ($selection)
     {
         {$_ -eq 0} {Exit}
         {$_ -eq 1} {Update; Break}
         {$_ -eq 2} {Reset; Break}
-        {$_ -eq 3} {AppendZijin; Break}
-        {$_ -eq 4} {AppendUser; Break}
-        {$_ -eq 5} {AppendWebsite; Break}
-        {$_ -eq 6} {Edit; Break}
+        {$_ -eq 3} {AppendUser; Break}
+        {$_ -eq 4} {AppendWebsite; Break}
+        {$_ -eq 5} {Edit; Break}
         Default    {About}
     }
-    Write-Host °´ÈÎÒâ¼ü·µ»Ø²Ëµ¥...
+    Write-Host æŒ‰ä»»æ„é”®è¿”å›èœå•...
     $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 }Until ($input -eq '0')

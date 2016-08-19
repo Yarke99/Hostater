@@ -3,10 +3,10 @@
 ╠═══════════════════════╣
 ║ Script Name: Hostater.ps1                    ║
 ║ Description: Update windows hosts file from  ║
-║         custom profile and website.          ║
+║         custom profile and website source.   ║
 ║　　　　　　　　　　　　　　　　　　　　　　　║
 ║ Author: Yarke　　　　　　　　　　　　　　　　║
 ║ QQCode: 649306855　　　　　　　　　　　　　　║
 ║ Create: 2016.06.03 　　　　　　　　　　　　　║
-║ Update: 2016.06.14 　　　　　　　　　　　　　║
+║ Update: 2016.08.20 　　　　　　　　　　　　　║
 ╚═══════════════════════╝
