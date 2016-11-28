@@ -77,6 +77,16 @@
 
 # Zijin Mining End
 
-# PowerDVD start
+# PowerDVD Start
 127.0.0.1	cap.cyberlink.com
-# PowerDVD end
+# PowerDVD End
+
+# fishlee Start
+127.0.0.1	www. fishlee.net
+127.0.0.1	storage.fishlee.net
+# fishlee End
+
+# Ultra Studio Start
+127.0.0.1 licensing.ultraedit.com
+127.0.0.1 licensing2.ultraedit.com
+# Ultra Studio End
